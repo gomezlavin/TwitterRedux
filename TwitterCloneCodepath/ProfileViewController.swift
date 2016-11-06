@@ -1,15 +1,14 @@
 //
-//  LoginViewController.swift
+//  ProfileViewController.swift
 //  TwitterCloneCodepath
 //
-//  Created by SGLMR on 29/10/16.
+//  Created by SGLMR on 05/11/16.
 //  Copyright © 2016 Golavs. All rights reserved.
 //
 
 import UIKit
-import BDBOAuth1Manager
 
-class LoginViewController: UIViewController {
+class ProfileViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,14 +21,6 @@ class LoginViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func onLoginButton(_ sender: AnyObject) {
-        TwitterClient.sharedInstance?.login(success: {            
-            self.performSegue(withIdentifier: "loginSegue", sender: nil)
-        }, failure: { (error: Error) in
-            print("Error: \(error.localizedDescription)")
-        })
-        
-    }
 
     /*
     // MARK: - Navigation

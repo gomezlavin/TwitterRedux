@@ -42,9 +42,28 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func onLogoutButton(_ sender: AnyObject) {
-        TwitterClient.sharedInstance?.logout()
+    @IBAction func onHamburgerClick(_ sender: Any) {
+//        let translation = sender.translation(in: view)
+//        let velocity = sender.velocity(in: view)
+//        
+//        if sender.state == UIGestureRecognizerState.began {
+//            originalLeftMargin = leftMarginConstraint.constant
+//        } else if sender.state == UIGestureRecognizerState.changed {
+//            leftMarginConstraint.constant = originalLeftMargin + translation.x
+//            
+//        } else if sender.state == UIGestureRecognizerState.ended {
+//            
+//            UIView.animate(withDuration: 0.3, animations: {
+//                if velocity.x > 0 {
+//                    self.leftMarginConstraint.constant =  self.view.frame.size.width - 50
+//                } else {
+//                    self.leftMarginConstraint.constant = 0
+//                }
+//                self.view.layoutIfNeeded()
+//            })
+//        }
     }
+
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tweets!.count
