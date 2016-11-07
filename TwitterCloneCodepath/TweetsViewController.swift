@@ -64,6 +64,12 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
 //        }
     }
 
+    @IBAction func onComposeButton(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let composeTweetViewController = storyboard.instantiateViewController(withIdentifier: "ComposeTweetViewController")
+        let composeNavigationController = UINavigationController(rootViewController: composeTweetViewController)
+        self.present(composeNavigationController, animated:true, completion: nil)
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tweets!.count

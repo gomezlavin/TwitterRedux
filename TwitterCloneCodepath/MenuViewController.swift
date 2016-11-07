@@ -19,6 +19,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var userHandleLabel: UILabel!
+    @IBOutlet weak var userContainerView: UIView!
     
     var viewControllers: [UIViewController] = []
     var hamburgerViewController: HamburgerViewController!
@@ -43,7 +44,10 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         userImageView.setImageWith((user?.profileUrl!)!)
         userImageView.layer.cornerRadius = 5
+        userImageView.layer.borderWidth = 3
+        userImageView.layer.borderColor = UIColor.white.cgColor
         userImageView.clipsToBounds = true
+        
         userNameLabel.text = user?.name
         userHandleLabel.text = "@\((user?.screenName)!)"
     }
@@ -66,6 +70,9 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.optionImageView.image = cell.optionImageView.image!.withRenderingMode(.alwaysTemplate)
         cell.optionImageView.tintColor = UIColor.white
         cell.optionLabel.text = titles[indexPath.row].capitalized
+        
+//        cell.contentView.layer.borderColor = UIColor.white.cgColor
+//        cell.contentView.layer.borderWidth = 1.0
         
         return cell
     }

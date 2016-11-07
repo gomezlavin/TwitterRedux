@@ -15,7 +15,12 @@ class MenuCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+//        let borderLayer = CALayer()
+//        let lineHeight:CGFloat = 0.5
+//        borderLayer.frame = CGRect(x: 0, y: self.frame.height - lineHeight , width: UIScreen.main.bounds.width, height: lineHeight)
+//        borderLayer.backgroundColor = UIColor.white.cgColor
+//        self.layer.addSublayer(borderLayer)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

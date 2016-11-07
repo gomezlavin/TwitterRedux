@@ -12,8 +12,17 @@ class User: NSObject {
     var name: String?
     var screenName: String?
     var profileUrl: URL?
+    var profileBackgroundUrl: URL?
+    var profileBackgroundColor: String?
+    var profileUseBackgroundImage: Bool?
     var tagline: String?
     var dictionary: NSDictionary?
+    var location: String?
+    var url: String?
+    var numberTweets: Int?
+    var numberFollowing: Int?
+    var numberFollowers: Int?
+    var following: Bool?
     
     static let userDidLogoutNotification = "UserDidLogout"
     
@@ -21,11 +30,27 @@ class User: NSObject {
         self.dictionary = dictionary
         name = dictionary["name"] as? String
         screenName = dictionary["screen_name"] as? String
-        let profileUrlString = dictionary["profile_image_url_https"] as? String
+        var profileUrlString = dictionary["profile_image_url_https"] as? String
+        profileUrlString = profileUrlString?.replacingOccurrences(of: "_normal", with: "")
         if let profileUrlString = profileUrlString {
             profileUrl = URL(string: profileUrlString)
         }
+        
+        var profileBackgroundUrlString = dictionary["profile_background_image_url_https"] as? String
+        profileBackgroundUrlString = profileBackgroundUrlString?.replacingOccurrences(of: "_normal", with: "")
+        if let profileBackgroundUrlString = profileBackgroundUrlString {
+            profileBackgroundUrl = URL(string: profileBackgroundUrlString)
+        }
+        
+        profileBackgroundColor = dictionary["profile_background_color"] as? String
+        profileUseBackgroundImage = dictionary["profile_use_background_image"] as? Bool
         tagline = dictionary["description"] as? String
+        location = dictionary["location"] as? String
+        url = dictionary["url"] as? String
+        numberTweets = dictionary["statuses_count"] as? Int
+        numberFollowing = dictionary["friends_count"] as? Int
+        numberFollowers = dictionary["followers_count"] as? Int
+        following = dictionary["following"] as? Bool
     }
     
     static var _currentUser: User?

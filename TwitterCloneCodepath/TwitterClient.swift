@@ -63,12 +63,60 @@ class TwitterClient: BDBOAuth1SessionManager {
         })
     }
     
+    func mentions(success: @escaping  ([Tweet]) -> (), failure: @escaping (Error) -> ()) {
+        get("1.1/statuses/mentions_timeline.json", parameters: nil, progress: nil, success: { (task: URLSessionTask?, response: Any?) in
+            let dictionaries = response as! [NSDictionary]
+            let tweets = Tweet.tweetsWithArray(dictionaries: dictionaries)
+            
+            success(tweets)
+        }, failure: { (task: URLSessionDataTask?, error: Error) in
+            failure(error)
+        })
+    }
+    
+    func userTimeline(screenName: String, success: @escaping  ([Tweet]) -> (), failure: @escaping (Error) -> ()) {
+        let endpoint = "1.1/statuses/user_timeline.json?screen_name=\(screenName)"
+        get(endpoint, parameters: nil, progress: nil, success: { (task: URLSessionTask?, response: Any?) in
+            let dictionaries = response as! [NSDictionary]
+            let tweets = Tweet.tweetsWithArray(dictionaries: dictionaries)
+            
+            success(tweets)
+        }, failure: { (task: URLSessionDataTask?, error: Error) in
+            failure(error)
+        })
+    }
+    
     func currentAccount(success: @escaping (User) -> (), failure: @escaping (Error) -> ()) {
         get("1.1/account/verify_credentials.json", parameters: nil, progress: nil, success: { (task: URLSessionTask?, response: Any?) in
             let userDictionary = response as! NSDictionary
             let user = User(dictionary: userDictionary)
-            
+//            let screenName = userDictionary["screenName"] as? String
+//            let endpoint = "1.1/users/profile_banner.json?screen_name=\(screenName)"
             success(user)
+            
+//            self.get(endpoint, parameters: nil, progress: nil, success: { (task: URLSessionTask?, response: Any?) in
+//                let bannerDictionary = response as! NSDictionary
+//                print("hola")
+//                dump(bannerDictionary)
+//                
+//                success(user)
+//            }, failure: { (task: URLSessionDataTask?, error: Error) in
+//                failure(error)
+//            })
+        }, failure: { (task: URLSessionDataTask?, error: Error) in
+            failure(error)
+        })
+    }
+    
+    func userBanners(screenName: String, success: @escaping (NSDictionary) -> (), failure: @escaping (Error) -> ()) {
+        let endpoint = "1.1/users/profile_banner.json?screen_name=\(screenName)"
+        
+        self.get(endpoint, parameters: nil, progress: nil, success: { (task: URLSessionTask?, response: Any?) in
+            let bannerDictionary = response as! NSDictionary
+            print("hola")
+            dump(bannerDictionary)
+            
+            success(bannerDictionary)
         }, failure: { (task: URLSessionDataTask?, error: Error) in
             failure(error)
         })
