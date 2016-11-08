@@ -11,6 +11,8 @@ import UIKit
 class ProfileViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var hamburgerBarButtonItem: UIBarButtonItem!
+    
     var tweets: [Tweet]! = []
     var user = User.currentUser
     
@@ -33,6 +35,14 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         }, failure: { (error: Error) in
             print(error)
         })
+        
+        if user?.screenName == User.currentUser?.screenName {
+            self.title = "Me"
+            self.navigationItem.leftBarButtonItem = hamburgerBarButtonItem
+        } else {
+            self.title = user?.screenName
+            self.navigationItem.leftBarButtonItem = nil
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -64,6 +74,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileCell", for: indexPath) as! ProfileCell
             cell.user = user
+            cell.selectionStyle = UITableViewCellSelectionStyle.none
             
             return cell
         } else {
@@ -90,15 +101,16 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         })
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "showTweetDetailsFromProfile" {
+            let cell = sender as! UITableViewCell
+            let indexPath = tableView.indexPath(for: cell)
+            let tweet = tweets![indexPath!.row]
+            
+            let readTweetViewController = segue.destination as! ReadTweetViewController
+            readTweetViewController.tweet = tweet
+        }
     }
-    */
     
 
 }

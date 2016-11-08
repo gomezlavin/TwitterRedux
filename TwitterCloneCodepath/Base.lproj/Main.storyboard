@@ -557,6 +557,7 @@
                                             <outlet property="userHandleLabel" destination="zoM-JF-3Ud" id="vWq-TS-Wrs"/>
                                             <outlet property="userImageView" destination="msL-m2-ZaV" id="Si4-gB-BuD"/>
                                             <outlet property="userNameLabel" destination="NCS-WE-I2r" id="EhZ-iX-qcb"/>
+                                            <segue destination="qlK-k2-6Ze" kind="show" identifier="showTweetDetailsFromProfile" id="5ky-k7-XMP"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -565,6 +566,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Me" id="OSv-2p-ZQ8">
+                        <barButtonItem key="leftBarButtonItem" image="hamburger" id="Q2K-Zm-aim"/>
                         <barButtonItem key="rightBarButtonItem" image="compose" id="WW0-gw-JLo">
                             <connections>
                                 <action selector="onComposeButton:" destination="bMW-Po-Zgf" id="vQV-9F-DkF"/>
@@ -572,8 +574,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="hamburgerBarButtonItem" destination="Q2K-Zm-aim" id="k60-gq-OOe"/>
                         <outlet property="tableView" destination="mIz-gR-1ez" id="fWK-o6-xaw"/>
-                        <segue destination="qlK-k2-6Ze" kind="show" identifier="showTweetDetailsFromProfile" id="2Ch-L8-1Yp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nwv-8n-J5C" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1456,7 +1458,7 @@
         <image name="word" width="1804" height="429"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="p9G-Gz-y98"/>
-        <segue reference="2Ch-L8-1Yp"/>
+        <segue reference="5ky-k7-XMP"/>
+        <segue reference="j7e-we-tvn"/>
     </inferredMetricsTieBreakers>
 </document>
