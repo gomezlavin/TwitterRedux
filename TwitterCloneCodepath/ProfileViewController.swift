@@ -12,7 +12,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
 
     @IBOutlet weak var tableView: UITableView!
     var tweets: [Tweet]! = []
-    let user = User.currentUser
+    var user = User.currentUser
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,6 +74,10 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         }
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
     func refreshControlAction(refreshControl: UIRefreshControl) {
         TwitterClient.sharedInstance?.userTimeline(screenName: (user?.screenName)!, success: { (tweets: [Tweet]) in
             self.tweets = tweets
@@ -95,5 +99,6 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         // Pass the selected object to the new view controller.
     }
     */
+    
 
 }

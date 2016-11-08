@@ -8,10 +8,11 @@
 
 import UIKit
 
-class MentionsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class MentionsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, TweetCellDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     var tweets: [Tweet]! = []
+    var user: User!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,6 +53,7 @@ class MentionsViewController: UIViewController, UITableViewDataSource, UITableVi
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TweetCell", for: indexPath) as! TweetCell
         cell.tweet = tweets[indexPath.row]
+        cell.delegate = self
         
         return cell
     }
@@ -72,15 +74,27 @@ class MentionsViewController: UIViewController, UITableViewDataSource, UITableVi
         tableView.deselectRow(at: indexPath, animated: true)
 //        self.performSegue(withIdentifier: "showTweetDetails", sender: nil)
     }
+    
+    func tweetCell(tweetCell: TweetCell, userScreenName value: String) {
+        TwitterClient.sharedInstance?.getUser(screenName: value, success: { (user: User) in
+            self.user = user
+            self.performSegue(withIdentifier: "showUserProfileFromMentions", sender: nil)
+        }, failure: { (error: Error) in
+            print(error)
+        })
+    }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showTweetDetails" {
+        if segue.identifier == "showTweetDetailsFromMentions" {
             let cell = sender as! UITableViewCell
             let indexPath = tableView.indexPath(for: cell)
             let tweet = tweets![indexPath!.row]
             
             let readTweetViewController = segue.destination as! ReadTweetViewController
             readTweetViewController.tweet = tweet
+        } else if segue.identifier == "showUserProfileFromMentions" {
+            let profileViewController = segue.destination as! ProfileViewController
+            profileViewController.user = self.user
         }
     }
 

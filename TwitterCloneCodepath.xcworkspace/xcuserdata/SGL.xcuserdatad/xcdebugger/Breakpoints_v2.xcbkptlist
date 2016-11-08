@@ -106,11 +106,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TwitterCloneCodepath/TwitterClient.swift"
-            timestampString = "500222462.404845"
+            timestampString = "500267216.77028"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "125"
-            endingLineNumber = "125"
+            startingLineNumber = "136"
+            endingLineNumber = "136"
             landmarkName = "statusUpdate(status:success:failure:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -134,7 +134,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TwitterCloneCodepath/TwitterClient.swift"
@@ -145,6 +145,54 @@
             endingLineNumber = "44"
             landmarkName = "handleOpenUrl(url:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TwitterCloneCodepath/ProfileCell.swift"
+            timestampString = "500269547.157748"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
+            landmarkName = "ProfileCell"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TwitterCloneCodepath.ProfileCell.init (style : __C.UITableViewCellStyle, reuseIdentifier : Swift.Optional&lt;Swift.String&gt;) -&gt; TwitterCloneCodepath.ProfileCell"
+                  moduleName = "TwitterCloneCodepath"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/SGL/Coding/Codepath/Week4/TwitterRedux/TwitterCloneCodepath/ProfileCell.swift"
+                  timestampString = "500268324.253678"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "25"
+                  endingLineNumber = "25"
+                  offsetFromSymbolStart = "772">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TwitterCloneCodepath.ProfileCell.init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;TwitterCloneCodepath.ProfileCell&gt;"
+                  moduleName = "TwitterCloneCodepath"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/SGL/Coding/Codepath/Week4/TwitterRedux/TwitterCloneCodepath/ProfileCell.swift"
+                  timestampString = "500268324.25577"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "25"
+                  endingLineNumber = "25"
+                  offsetFromSymbolStart = "690">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

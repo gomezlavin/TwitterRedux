@@ -8,10 +8,11 @@
 
 import UIKit
 
-class TweetsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class TweetsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, TweetCellDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     var tweets: [Tweet]! = []
+    var user: User!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,6 +79,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TweetCell", for: indexPath) as! TweetCell
         cell.tweet = tweets[indexPath.row]
+        cell.delegate = self
 
         return cell
     }
@@ -93,15 +95,27 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
                 print(error)
         })
     }
+    
+    func tweetCell(tweetCell: TweetCell, userScreenName value: String) {
+        TwitterClient.sharedInstance?.getUser(screenName: value, success: { (user: User) in
+            self.user = user
+            self.performSegue(withIdentifier: "showUserProfileFromHome", sender: nil)
+        }, failure: { (error: Error) in
+            print(error)
+        })
+    }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == nil {
+        if segue.identifier == "showTweetDetailsFromHome" {
             let cell = sender as! UITableViewCell
             let indexPath = tableView.indexPath(for: cell)
             let tweet = tweets![indexPath!.row]
             
             let readTweetViewController = segue.destination as! ReadTweetViewController
             readTweetViewController.tweet = tweet
+        } else if segue.identifier == "showUserProfileFromHome" {
+            let profileViewController = segue.destination as! ProfileViewController
+            profileViewController.user = self.user
         }
     }
 

@@ -108,13 +108,24 @@ class TwitterClient: BDBOAuth1SessionManager {
         })
     }
     
+    func getUser(screenName: String, success: @escaping (User) -> (), failure: @escaping (Error) -> ()) {
+        let endpoint = "1.1/users/show.json?screen_name=\(screenName)"
+        
+        self.get(endpoint, parameters: nil, progress: nil, success: { (task: URLSessionTask?, response: Any?) in
+            let userDictionary = response as! NSDictionary
+            let user = User(dictionary: userDictionary)
+            
+            success(user)
+        }, failure: { (task: URLSessionDataTask?, error: Error) in
+            failure(error)
+        })
+    }
+    
     func userBanners(screenName: String, success: @escaping (NSDictionary) -> (), failure: @escaping (Error) -> ()) {
         let endpoint = "1.1/users/profile_banner.json?screen_name=\(screenName)"
         
         self.get(endpoint, parameters: nil, progress: nil, success: { (task: URLSessionTask?, response: Any?) in
             let bannerDictionary = response as! NSDictionary
-            print("hola")
-            dump(bannerDictionary)
             
             success(bannerDictionary)
         }, failure: { (task: URLSessionDataTask?, error: Error) in

@@ -8,6 +8,10 @@
 
 import UIKit
 
+@objc protocol TweetCellDelegate {
+    @objc optional func tweetCell(tweetCell: TweetCell, userScreenName value: String)
+}
+
 class TweetCell: UITableViewCell {
     
     @IBOutlet weak var actionImageView: UIImageView!
@@ -19,6 +23,8 @@ class TweetCell: UITableViewCell {
     @IBOutlet weak var tweetTextLabel: UILabel!
     @IBOutlet weak var retweetsLabel: UILabel!
     @IBOutlet weak var likesLabel: UILabel!
+    
+    weak var delegate: TweetCellDelegate?
     
     var tweet: Tweet! {
         didSet {
@@ -47,6 +53,11 @@ class TweetCell: UITableViewCell {
         
         userImageView.layer.cornerRadius = 5
         userImageView.clipsToBounds = true
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(TweetCell.handleTap))
+        tapGesture.delegate = self;
+        userImageView.isUserInteractionEnabled = true
+        userImageView.addGestureRecognizer(tapGesture)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -55,6 +66,11 @@ class TweetCell: UITableViewCell {
 //        let backgroundView = UIView()
 //        backgroundView.backgroundColor = .none
 //        self.selectedBackgroundView = backgroundView
+    }
+    
+    func handleTap(sender: UITapGestureRecognizer? = nil) {
+        let screenName = userHandleLabel.text as String!
+        delegate?.tweetCell?(tweetCell: self, userScreenName: screenName!)
     }
     
     func formatDate(date: Date) -> String {

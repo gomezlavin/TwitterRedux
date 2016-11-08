@@ -125,9 +125,6 @@
 			isa = PBXGroup;
 			children = (
 				FEF8A6871DC6880B00DFBC7A /* TweetsViewController.swift */,
-				FEC6B9841DC880A30023EEBB /* ReplyViewController.swift */,
-				FE5A12C51DC78CD500ACB5EB /* ComposeTweetViewController.swift */,
-				FE5A12C71DC78D2600ACB5EB /* ReadTweetViewController.swift */,
 			);
 			name = HomeTimelineFlow;
 			sourceTree = "<group>";
@@ -151,12 +148,10 @@
 		FE318FB71DC5509300DEFBB5 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				FEF738E51DD1888E00E23BF8 /* General */,
 				FE2C89A91DCE5D110099890E /* MentionsFlow */,
 				FE2C89A81DCE5C2B0099890E /* ProfileFlow */,
 				FE2C89A71DCE5BF70099890E /* HomeTimelineFlow */,
-				FE318FB81DC550C100DEFBB5 /* LoginViewController.swift */,
-				FE2C89A11DCE57C80099890E /* MenuViewController.swift */,
-				FE2C89AC1DCE6CF40099890E /* HamburgerViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -186,6 +181,19 @@
 				FE2C89AE1DD022950099890E /* ProfileCell.swift */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		FEF738E51DD1888E00E23BF8 /* General */ = {
+			isa = PBXGroup;
+			children = (
+				FE318FB81DC550C100DEFBB5 /* LoginViewController.swift */,
+				FE2C89A11DCE57C80099890E /* MenuViewController.swift */,
+				FE2C89AC1DCE6CF40099890E /* HamburgerViewController.swift */,
+				FEC6B9841DC880A30023EEBB /* ReplyViewController.swift */,
+				FE5A12C51DC78CD500ACB5EB /* ComposeTweetViewController.swift */,
+				FE5A12C71DC78D2600ACB5EB /* ReadTweetViewController.swift */,
+			);
+			name = General;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
